@@ -17,20 +17,20 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-      post.update(user_params)
+      post.update(post_params)
       render :json => post, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     post = Post.find(params[:id])
-      post.destory
+      post.destroy
       render json:{}
   end 
   
   private
 
   def post_params
-    params.require(:post).permit(:img, :description, :date)
+    params.require(:post).permit(:img, :description, :date, :user_id)
   end
 
 end

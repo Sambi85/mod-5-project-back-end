@@ -21,9 +21,9 @@ class UsersController < ApplicationController
       render :json => user, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     user = User.find(params[:id])
-      user.destory
+      user.destroy
       render json:{}
   end 
   

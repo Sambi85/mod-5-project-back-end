@@ -17,13 +17,13 @@ class LikesController < ApplicationController
 
   def update
     like = Like.find(params[:id])
-      like.update(user_params)
+      like.update(like_params)
       render :json => like, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     like = Like.find(params[:id])
-      like.destory
+      like.destroy
       render json:{}
   end 
     

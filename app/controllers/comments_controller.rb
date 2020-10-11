@@ -21,13 +21,13 @@ class CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
-      comment.update(user_params)
+      comment.update(comment_params)
       render :json => comment, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     comment = Comment.find(params[:id])
-      comment.destory
+      comment.destroy
       render json:{}
   end 
     

@@ -17,13 +17,13 @@ class RepliesController < ApplicationController
 
   def update
     reply = Reply.find(params[:id])
-      reply.update(user_params)
+      reply.update(reply_params)
       render :json => reply, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     reply = Reply.find(params[:id])
-      reply.destory
+      reply.destroy
       render json:{}
   end 
   

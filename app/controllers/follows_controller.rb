@@ -17,13 +17,13 @@ class FollowsController < ApplicationController
 
   def update
     follow = Follow.find(params[:id])
-      follow.update(user_params)
+      follow.update(follow_params)
       render :json => follow, serialzer: UserSerializer
   end
 
-  def delete
+  def destroy
     follow = Follow.find(params[:id])
-      follow.destory
+      follow.destroy
       render json:{}
   end 
   
