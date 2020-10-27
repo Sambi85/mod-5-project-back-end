@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
-    has many :comments
-    has many :users, through :comments
     
-    has many :likes
-    has many :users, through :likes
-
+    belongs_to :user
+    has_many :comments
+    has_many :likes
+    
 end
