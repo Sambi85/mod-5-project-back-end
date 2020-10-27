@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
 
   def index
     posts = Post.all
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
       post.update(post_params)
-      render :json => post, serialzer: UserSerializer
+      render :json => post, serialzer: PostSerializer
   end
 
   def destroy

@@ -1,4 +1,8 @@
+# require 'bcrypt'
+
 class User < ApplicationRecord
+    has_secure_password
+    # validates :username, uniqueness: { case_sensitive: false }
    
     has_many :likes
     has_many :comments
@@ -10,5 +14,5 @@ class User < ApplicationRecord
 
     has_many :following_users, foreign_key: :leader_id, class_name: 'Follow'
     has_many :followers, through: :following_users
-
+    
 end

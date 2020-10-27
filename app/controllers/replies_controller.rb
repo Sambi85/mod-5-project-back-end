@@ -1,13 +1,14 @@
 class RepliesController < ApplicationController
+  skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
 
   def index
     replies = Reply.all
-    render :json => replies
+    render :json => replies, each_serializer: ReplySerializer 
   end
 
   def show
     reply = Reply.find(params[:id])
-    render :json => reply
+    render :json => reply, serialzer: ReplySerializer
   end
 
   def create
@@ -18,7 +19,7 @@ class RepliesController < ApplicationController
   def update
     reply = Reply.find(params[:id])
       reply.update(reply_params)
-      render :json => reply, serialzer: UserSerializer
+      render :json => reply, serialzer: ReplySerializer
   end
 
   def destroy
@@ -30,7 +31,7 @@ class RepliesController < ApplicationController
   private
 
   def reply_params
-    params.require(:reply).permit(:user_id, :post_id, :description, :date)
+    params.require(:reply).permit(:user_id, :comment_id, :description, :date)
   end
 
 end

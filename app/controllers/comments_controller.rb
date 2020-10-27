@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
+  skip_before_action :authorized, only: [:index, :show, :create, :update, :destroy]
 
   def index
     comments = Comment.all
-    render json: comments
+    render json: comments, each_serialzer: CommentSerializer
   end
 
   def show
     comment = Comment.find(params[:id])
-    render json: comment
+    render json: comment, serialzer: CommentSerializer
   end
 
   def new
@@ -22,7 +23,7 @@ class CommentsController < ApplicationController
   def update
     comment = Comment.find(params[:id])
       comment.update(comment_params)
-      render :json => comment, serialzer: UserSerializer
+      render :json => comment, serialzer: CommentSerializer
   end
 
   def destroy
